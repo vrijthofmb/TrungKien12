@@ -243,6 +243,27 @@ button{cursor:pointer}
     }
 
 }
+
+/* ===== TÌM KIẾM + CHUỖI HỌC TẬP + HỖ TRỢ ===== */
+.search-wrap{position:relative;flex:1;max-width:430px;margin:0 18px}
+.search-input{width:100%;height:42px;padding:0 42px 0 15px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--text);outline:none;transition:.2s}
+.search-input:focus{border-color:var(--primary);box-shadow:0 0 0 4px #2563eb18}
+.search-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.streak-card{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px;margin-bottom:22px;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative}
+.streak-main{display:flex;align-items:center;gap:14px}.streak-fire{font-size:38px}.streak-number{font-size:30px;font-weight:900;line-height:1}.streak-title{font-weight:800;margin-bottom:4px}.streak-next{font-size:13px;color:var(--muted)}
+.streak-badge{padding:9px 14px;border-radius:999px;color:#fff;font-weight:800;white-space:nowrap;box-shadow:0 7px 18px #0002}
+.streak-progress{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;margin-top:10px}.streak-progress span{display:block;height:100%;border-radius:99px;transition:width .5s ease}
+.streak-levels{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.streak-dot{font-size:11px;font-weight:800;padding:4px 7px;border-radius:7px;background:var(--surface2);color:var(--muted);border:1px solid var(--line)}
+.support-card{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border:0}.support-card p{color:#cbd5e1}.support-actions{display:flex;gap:9px;flex-wrap:wrap}
+.search-results{margin-top:10px}.search-result{padding:13px 15px;border:1px solid var(--line);background:var(--surface2);border-radius:12px;margin:8px 0;cursor:pointer;transition:.2s}.search-result:hover{transform:translateY(-1px);border-color:var(--primary)}
+.search-type{font-size:11px;font-weight:800;color:var(--primary);text-transform:uppercase}.search-title{font-weight:800;margin:3px 0}.search-body{font-size:13px;color:var(--muted);line-height:1.45}
+.mobile-nav{display:none}
+@media(max-width:800px){
+.top{height:64px}.brand{font-size:16px}.brand .logo{width:34px;height:34px}.search-wrap{position:absolute;top:70px;left:12px;right:12px;max-width:none;margin:0}.top{margin-bottom:58px}.content{padding:16px 14px 88px}.streak-card{align-items:flex-start;flex-direction:column}.streak-badge{align-self:flex-start}.mobile-nav{position:fixed;display:flex;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:10;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:7px;box-shadow:0 12px 35px #0003;gap:5px}.mobile-nav button{flex:1;border:0;background:transparent;color:var(--muted);padding:8px 4px;border-radius:12px;font-size:11px}.mobile-nav button:hover{background:var(--surface2);color:var(--text)}.support-actions .btn{flex:1}.search-input{height:40px}
+}
+@media(max-width:480px){.userbar{gap:6px}.logout{padding:7px 9px}.streak-number{font-size:27px}.streak-fire{font-size:32px}.streak-levels{gap:5px}}
+@media(prefers-reduced-motion:no-preference){.search-result,.btn,.navbtn,.card,.stat,.tab{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease}.card:hover,.stat:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0000000d}}
+
 </style>
 </head>
 
@@ -288,6 +309,55 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({
 }[m]));
 
 const uid=arr=>arr.length?Math.max(...arr.map(x=>x.id))+1:1;
+
+
+// =====================================================
+// 🔥 CHUỖI HỌC TẬP
+// =====================================================
+const STREAK_LEVELS=[3,5,10,30,100,200,300,400,500];
+const STREAK_COLORS=['#22c55e','#06b6d4','#3b82f6','#8b5cf6','#ec4899','#f97316','#ef4444','#eab308','#14b8a6'];
+function dateKey(d=new Date()){const x=new Date(d);return `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;}
+function dayDiff(a,b){const A=new Date(a+'T00:00:00'),B=new Date(b+'T00:00:00');return Math.round((B-A)/86400000);}
+function updateStreak(){
+ const user=db.users.find(x=>x.id===me); if(!user)return null;
+ const today=dateKey(); const last=user.lastAccessDate||'';
+ if(!user.streak) user.streak=0;
+ if(last===today) return user.streak;
+ if(last && dayDiff(last,today)===1) user.streak+=1; else user.streak=1;
+ user.lastAccessDate=today; save(); return user.streak;
+}
+function streakInfo(n){
+ let idx=-1; STREAK_LEVELS.forEach((v,i)=>{if(n>=v)idx=i;});
+ const level=idx>=0?STREAK_LEVELS[idx]:0; const color=idx>=0?STREAK_COLORS[idx]:'var(--muted)';
+ const next=STREAK_LEVELS.find(v=>v>n)||500;
+ return {level,color,next};
+}
+function streakHtml(n){
+ const info=streakInfo(n); const next=info.level>=500?500:info.next; const base=info.level||0; const pct=n>=500?100:Math.min(100,Math.max(4,((n-base)/Math.max(1,next-base))*100));
+ return `<div class="streak-card"><div style="flex:1;width:100%"><div class="streak-main"><div class="streak-fire">🔥</div><div><div class="streak-title">Chuỗi học tập</div><div><span class="streak-number">${n}</span> <span class="muted">ngày liên tiếp</span></div></div></div><div class="streak-progress"><span style="width:${pct}%;background:${info.color}"></span></div><div class="streak-next">${n>=500?'🏆 Bạn đã đạt mốc cao nhất 500 ngày!':`Còn ${next-n} ngày để đạt mốc ${next} ngày.`}</div><div class="streak-levels">${STREAK_LEVELS.map((v,i)=>`<span class="streak-dot" style="${n>=v?'color:#fff;background:'+STREAK_COLORS[i]+';border-color:'+STREAK_COLORS[i]:''}">${v} ngày</span>`).join('')}</div></div><div class="streak-badge" style="background:${info.color}">${info.level?`🔥 Mốc ${info.level}`:'🌱 Bắt đầu'}</div></div>`;
+}
+
+// =====================================================
+// 🔎 TÌM KIẾM TOÀN KHO
+// =====================================================
+function searchAll(raw){
+ const q=String(raw||'').trim().toLowerCase(); const box=document.getElementById('searchResults'); if(!box)return;
+ if(!q){box.innerHTML='';return;}
+ const subs=db.subjects.filter(s=>s.user===me); const out=[];
+ subs.forEach(s=>{
+  if((s.name+' '+(s.desc||'')).toLowerCase().includes(q))out.push({type:'Môn học',title:s.name,body:s.desc||'Chưa có mô tả.',action:`openSubject(${s.id})`});
+  db.contents.filter(x=>x.subject===s.id).forEach(x=>{if((x.title+' '+x.body).toLowerCase().includes(q))out.push({type:'Nội dung',title:x.title,body:x.body,action:`openSubject(${s.id})`});});
+  db.assignments.filter(x=>x.subject===s.id).forEach(x=>{if((x.title+' '+x.body).toLowerCase().includes(q))out.push({type:'Bài tập',title:x.title,body:x.body,action:`openSubject(${s.id})`});});
+  db.docs.filter(x=>x.subject===s.id).forEach(x=>{if((x.name+' '+(x.url||'')).toLowerCase().includes(q))out.push({type:'Tài liệu',title:x.name,body:x.url||'',action:`window.open('${esc(x.url||'#')}','_blank')`});});
+ });
+ box.innerHTML=`<div class="card search-results"><b>🔎 Kết quả cho “${esc(raw)}”</b>${out.length?out.slice(0,12).map(x=>`<div class="search-result" onclick="${x.action}"><div class="search-type">${x.type}</div><div class="search-title">${esc(x.title)}</div><div class="search-body">${esc(x.body).slice(0,180)}</div></div>`).join(''):'<div class="empty" style="padding:25px 5px">Không tìm thấy kết quả trong kho học tập.</div>'}</div>`;
+}
+function openSupport(){
+ modal(`<h2>🛟 Liên hệ hỗ trợ</h2><p class="muted">Gửi vấn đề hoặc góp ý về Kho Học Tập.</p><div class="field"><label>Tiêu đề</label><input id="supportTitle" placeholder="Ví dụ: Lỗi đăng nhập"></div><div class="field"><label>Nội dung</label><textarea id="supportBody" placeholder="Mô tả vấn đề của bạn..."></textarea></div><div class="form-actions"><button class="btn secondary" onclick="closeModal()">Hủy</button><button class="btn" onclick="sendSupport()">📨 Gửi hỗ trợ</button></div>`);
+}
+function sendSupport(){const title=document.getElementById('supportTitle').value.trim(),body=document.getElementById('supportBody').value.trim();if(!title||!body)return alert('Vui lòng nhập đầy đủ tiêu đề và nội dung.');const arr=JSON.parse(localStorage.getItem('khht_support')||'[]');arr.push({user:me,title,body,time:new Date().toISOString()});localStorage.setItem('khht_support',JSON.stringify(arr));closeModal();alert('Đã ghi nhận yêu cầu hỗ trợ.');}
+function supportPage(){document.getElementById('app').innerHTML=`<div class="top"><div class="brand"><div class="logo">📚</div>Kho Học Tập</div><div class="userbar"><button class="logout" onclick="logout()">Đăng xuất</button></div></div><main class="content"><div class="section-head"><div><h1 style="margin:0">🛟 Liên hệ hỗ trợ</h1><p class="muted">Cần trợ giúp? Hãy gửi vấn đề cho quản trị viên.</p></div><button class="btn secondary" onclick="dashboard()">← Quay lại</button></div><div class="card support-card"><h2>Trung tâm hỗ trợ</h2><p>Nếu bạn gặp lỗi, muốn góp ý hoặc cần hướng dẫn sử dụng kho học tập, hãy gửi yêu cầu.</p><div class="support-actions"><button class="btn" onclick="openSupport()">📨 Gửi yêu cầu hỗ trợ</button><button class="btn secondary" onclick="dashboard()">🏠 Về trang chủ</button></div></div></main>`;}
+
 
 function render(){
 me?dashboard():login();}
@@ -397,6 +467,7 @@ render();}}
 
 function dashboard(){
 
+let streak=updateStreak();
 let subs=db.subjects.filter(s=>s.user===me);
 
 let cs=db.contents.filter(c=>
@@ -417,6 +488,12 @@ document.getElementById('app').innerHTML=`
 <div class="brand">
 <div class="logo">📚</div>
 Kho Học Tập
+</div>
+
+<div class="search-wrap">
+<input class="search-input" id="globalSearch" placeholder="🔎 Tìm môn học, bài tập, tài liệu..." oninput="searchAll(this.value)">
+<div class="search-icon">⌕</div>
+<div id="searchResults" style="position:absolute;left:0;right:0;top:47px;z-index:8"></div>
 </div>
 
 <div class="userbar">
@@ -501,7 +578,19 @@ font-size:18px;
 👤 Hồ sơ tài khoản
 </button>
 
+<button class="navbtn" onclick="supportPage()">
+🛟 Liên hệ hỗ trợ
+</button>
+
 </aside>
+
+<nav class="mobile-nav">
+<button onclick="dashboard()">🏠<br>Trang chủ</button>
+<button onclick="showAll('content')">📖<br>Nội dung</button>
+<button onclick="showAll('assignment')">📝<br>Bài tập</button>
+<button onclick="supportPage()">🛟<br>Hỗ trợ</button>
+<button onclick="profile()">👤<br>Hồ sơ</button>
+</nav>
 
 <main class="content">
 
@@ -516,6 +605,8 @@ Xin chào trai xinh gái đẹp, ${esc(user)} 👋
 </p>
 
 </div>
+
+${streakHtml(streak)}
 
 <div class="stats">
 
@@ -696,6 +787,12 @@ document.getElementById('app').innerHTML=`
 <div class="brand">
 <div class="logo">📚</div>
 Kho Học Tập
+</div>
+
+<div class="search-wrap">
+<input class="search-input" id="globalSearch" placeholder="🔎 Tìm môn học, bài tập, tài liệu..." oninput="searchAll(this.value)">
+<div class="search-icon">⌕</div>
+<div id="searchResults" style="position:absolute;left:0;right:0;top:47px;z-index:8"></div>
 </div>
 
 <div class="userbar">
