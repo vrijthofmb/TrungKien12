@@ -1,0 +1,2199 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kho Học Tập - Nguyễn Trung Kiên</title>
+<style>
+
+:root{color-scheme:light dark;--bg:light-dark(#f4f7fb,#0b1220);--surface:light-dark(#fff,#111827);--surface2:light-dark(#f8fafc,#172033);--text:light-dark(#172033,#f3f4f6);--muted:light-dark(#64748b,#9ca3af);--line:light-dark(#e2e8f0,#263247);--primary:light-dark(#2563eb,#60a5fa);--primary2:light-dark(#1d4ed8,#3b82f6);--danger:#ef4444}
+*{box-sizing:border-box}
+
+html,body{margin:0;min-height:100%;font-family:Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+
+.root{min-height:100vh}
+.top{height:68px;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:5}
+.brand{display:flex;gap:11px;align-items:center;font-weight:800;font-size:19px}
+.logo{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--primary),#7c3aed);color:#fff}
+
+.userbar{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:14px}
+.logout{border:1px solid var(--line);background:var(--surface2);color:var(--text);padding:8px 12px;border-radius:9px}
+.layout{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 68px)}
+.side{background:var(--surface);border-right:1px solid var(--line);padding:22px 14px}
+.navbtn{width:100%;text-align:left;border:0;background:transparent;color:var(--muted);padding:12px 14px;border-radius:10px;margin:3px 0}
+
+.navbtn.active,.navbtn:hover{background:var(--surface2);color:var(--text)}
+.content{padding:30px;max-width:1250px;width:100%;margin:auto}
+.hero{background:linear-gradient(135deg,#2563eb,#6d28d9);color:#fff;border-radius:20px;padding:28px;margin-bottom:22px;box-shadow:0 12px 30px #2563eb22}
+.hero h1{margin:0 0 7px;font-size:28px}
+.hero p{margin:0;opacity:.88}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stat,.card{background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.stat{padding:18px}
+.num{font-size:27px;font-weight:800;color:var(--primary)}
+.muted{color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:24px 0 15px}
+.section-head h2{margin:0}
+.btn{border:0;background:var(--primary);color:#fff;padding:10px 15px;border-radius:10px;font-weight:700}
+.btn:hover{background:var(--primary2)}
+.btn.secondary{background:var(--surface2);color:var(--text);border:1px solid var(--line)}
+.btn.danger{background:var(--danger)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(245px,1fr));gap:15px}
+.subject{padding:20px}
+.subject .emoji{font-size:28px}
+.subject h3{margin:12px 0 7px}
+.subject p{min-height:42px;color:var(--muted);font-size:14px;line-height:1.5}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.card{padding:20px;margin-bottom:16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:9px 13px;border-radius:9px}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+
+.item{padding:16px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;margin:10px 0}
+.item h3{margin:0 0 7px}
+.item p{white-space:pre-wrap;line-height:1.6;color:var(--muted)}
+
+.modal{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
+.modal.open{display:flex}
+
+.dialog{width:min(560px,100%);background:var(--surface);border-radius:18px;padding:22px;border:1px solid var(--line)}
+.dialog h2{margin-top:0}
+
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.field input,.field textarea{width:100%;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface2);color:var(--text)}
+.field textarea{min-height:120px;resize:vertical}
+.form-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:16px}
+.auth{min-height:100vh;display:grid;place-items:center;padding:20px}
+.authbox{width:min(430px,100%);background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:30px}
+.authbox .brand{justify-content:center;margin-bottom:25px}
+.authbox h1{text-align:center}
+.switch{text-align:center;margin-top:15px;color:var(--muted)}
+.link{color:var(--primary);cursor:pointer;font-weight:700}
+.empty{text-align:center;padding:45px 20px;color:var(--muted)}
+.hidden{display:none!important}
+@media(max-width:800px){
+.layout{grid-template-columns:1fr}
+.side{display:none}
+.content{padding:18px}
+.stats{grid-template-columns:repeat(2,1fr)}
+.top{padding:0 15px}
+.userbar span{display:none}
+}
+@media(max-width:480px){
+.stats{grid-template-columns:1fr 1fr}
+.hero h1{font-size:23px}
+}
+/* =========================
+   AI HỌC TẬP
+========================= */
+
+.ai-button{
+    color:#7c3aed;
+    font-weight:700;
+}
+
+.ai-button:hover{
+    background:#f3e8ff;
+    color:#6d28d9;
+}
+
+.ai-page{
+    max-width:1100px;
+    margin:auto;
+}
+
+.ai-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px #00000010;
+}
+
+.ai-header{
+    padding:20px;
+    background:linear-gradient(135deg,#7c3aed,#2563eb);
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.ai-avatar{
+    width:50px;
+    height:50px;
+    border-radius:15px;
+    background:#ffffff25;
+    display:grid;
+    place-items:center;
+    font-size:28px;
+}
+
+.ai-header h2{
+    margin:0 0 4px;
+}
+
+.ai-header p{
+    margin:0;
+    opacity:.85;
+}
+
+.ai-messages{
+    height:500px;
+    overflow-y:auto;
+    padding:20px;
+    background:var(--surface2);
+}
+
+.ai-message{
+    max-width:80%;
+    padding:13px 16px;
+    border-radius:15px;
+    margin:10px 0;
+    line-height:1.6;
+    white-space:pre-wrap;
+}
+
+.ai-message.bot{
+    background:var(--surface);
+    border:1px solid var(--line);
+    margin-right:auto;
+}
+
+.ai-message.user{
+    background:var(--primary);
+    color:white;
+    margin-left:auto;
+}
+
+.ai-tools{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    padding:12px 15px;
+    border-top:1px solid var(--line);
+    background:var(--surface);
+}
+
+.ai-tool{
+    border:1px solid var(--line);
+    background:var(--surface2);
+    color:var(--text);
+    padding:9px 12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.ai-tool:hover{
+    border-color:var(--primary);
+}
+
+.ai-input{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid var(--line);
+    background:var(--surface);
+}
+
+.ai-input textarea{
+    flex:1;
+    min-height:50px;
+    max-height:150px;
+    resize:vertical;
+    padding:13px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--surface2);
+    color:var(--text);
+}
+
+.ai-send{
+    width:55px;
+    border:0;
+    border-radius:12px;
+    background:var(--primary);
+    color:white;
+    font-size:20px;
+}
+
+.ai-send:hover{
+    background:var(--primary2);
+}
+
+.ai-loading{
+    opacity:.6;
+}
+
+@media(max-width:600px){
+
+    .ai-messages{
+        height:55vh;
+    }
+
+    .ai-message{
+        max-width:90%;
+    }
+
+    .ai-input{
+        align-items:flex-end;
+    }
+
+}
+</style>
+</head>
+
+<body>
+<div id="app" class="root"></div>
+<div id="modal" class="modal">
+<div class="dialog" id="dialog"></div>
+</div>
+
+<script>
+const KEY='khht_demo_v1';
+
+const seed={
+users:[{
+id:1,
+u:'admin',
+p:'admin123',
+email:'',
+phone:'',
+avatar:''}],
+
+subjects:[{id:1,user:1,name:'Lập trình Python',desc:'Kiến thức Python từ cơ bản đến nâng cao.'},{id:2,user:1,name:'Toán',desc:'Công thức, bài tập và tài liệu Toán.'}],
+
+contents:[{id:1,subject:1,title:'Biến và kiểu dữ liệu',body:'Biến dùng để lưu trữ dữ liệu. Một số kiểu cơ bản: int, float, str, bool.'}],
+
+assignments:[{id:1,subject:1,title:'Bài tập Python số 1',body:'Viết chương trình nhập họ tên và tuổi rồi in ra màn hình.',due:'2026-10-05'}],
+
+docs:[{id:1,subject:1,name:'Tài liệu Python cơ bản',url:'https://docs.python.org/3/tutorial/'}]};
+
+let db=JSON.parse(localStorage.getItem(KEY)||JSON.stringify(seed));
+let me=Number(localStorage.getItem('khht_me')||0);
+let currentSubject=null;
+let currentTab='content';
+
+const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[m]));
+
+const uid=arr=>arr.length?Math.max(...arr.map(x=>x.id))+1:1;
+
+function render(){
+me?dashboard():login();}
+
+function login(register=false){
+
+document.getElementById('app').innerHTML=`
+
+<div class="auth">
+<div class="authbox">
+
+<div class="brand">
+<div class="logo">📚</div>
+Kho Học Tập
+</div>
+
+<h1>${register?'Tạo tài khoản':'Đăng nhập'}</h1>
+
+<p class="muted" style="text-align:center">
+Nguyễn Trung Kiên
+</p>
+
+<div class="field">
+<label>Tên tài khoản</label>
+<input
+    id="au"
+    placeholder="Ví dụ: jack97deptrai"
+    onkeydown="if(event.key==='Enter') auth(${register})">
+</div>
+
+<div class="field">
+<label>Mật khẩu</label>
+<input
+    id="ap"
+    type="password"
+    placeholder="Ít nhất 6 ký tự"
+    onkeydown="if(event.key==='Enter') auth(${register})"
+>
+</div>
+
+${register?
+'<div class="field"><label>Nhập lại mật khẩu</label><input id="ac" type="password"></div>'
+:''}
+
+<button class="btn" style="width:100%" onclick="auth(${register})">
+${register?'Đăng ký':'Đăng nhập'}
+</button>
+
+<div class="switch">
+${register?'Đã có tài khoản?':'Chưa có tài khoản?'}
+<span class="link" onclick="login(${!register})">
+${register?'Đăng nhập':'Đăng ký'}
+</span>
+</div>
+
+</div>
+</div>
+`;}
+
+function auth(reg){
+
+let u=document.getElementById('au').value.trim();
+let p=document.getElementById('ap').value;
+
+if(!u||!p)
+return alert('Vui lòng nhập đủ thông tin.');
+
+if(reg){
+
+let c=document.getElementById('ac').value;
+
+if(p.length<6)
+return alert('Mật khẩu cần ít nhất 6 ký tự.');
+
+if(p!==c)
+return alert('Mật khẩu nhập lại không khớp.');
+
+if(db.users.some(x=>x.u===u))
+return alert('Tên tài khoản đã tồn tại.');
+
+let id=uid(db.users);
+
+db.users.push({
+id,
+u,
+p
+});
+
+save();
+
+me=id;
+
+localStorage.setItem('khht_me',me);
+
+render();}else{
+
+let x=db.users.find(x=>x.u===u&&x.p===p);
+
+if(!x)
+return alert('Sai tài khoản hoặc mật khẩu.');
+
+me=x.id;
+
+localStorage.setItem('khht_me',me);
+
+render();}}
+
+function dashboard(){
+
+let subs=db.subjects.filter(s=>s.user===me);
+
+let cs=db.contents.filter(c=>
+subs.some(s=>s.id===c.subject));
+
+let as=db.assignments.filter(a=>
+subs.some(s=>s.id===a.subject));
+
+let ds=db.docs.filter(d=>
+subs.some(s=>s.id===d.subject));
+
+let user=db.users.find(x=>x.id===me)?.u||'';
+
+document.getElementById('app').innerHTML=`
+
+<div class="top">
+
+<div class="brand">
+<div class="logo">📚</div>
+Kho Học Tập
+</div>
+
+<div class="userbar">
+
+<button
+onclick="profile()"
+style="
+border:0;
+background:transparent;
+padding:0;
+display:flex;
+align-items:center;
+gap:8px;
+color:var(--muted);
+cursor:pointer;
+">
+
+${
+db.users.find(x=>x.id===me)?.avatar
+?
+`<img
+src="${db.users.find(x=>x.id===me).avatar}"
+style="
+width:36px;
+height:36px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid var(--primary);
+">`
+:
+`<div style="
+width:36px;
+height:36px;
+border-radius:50%;
+background:var(--surface2);
+display:grid;
+place-items:center;
+font-size:18px;
+">👤</div>`
+}
+
+<span>${esc(user)}</span>
+
+</button>
+
+<button class="logout" onclick="logout()">
+Đăng xuất
+</button>
+
+</div>
+</div>
+
+<div class="layout">
+
+<aside class="side">
+
+<button class="navbtn active" onclick="dashboard()">
+🏠 Tổng quan
+</button>
+
+<button class="navbtn" onclick="showAll('content')">
+📖 Nội dung
+</button>
+
+<button class="navbtn" onclick="showAll('assignment')">
+📝 Bài tập
+</button>
+
+<button class="navbtn" onclick="showAll('doc')">
+📎 Tài liệu
+</button>
+
+<button class="navbtn ai-button" onclick="aiPage()">
+🤖 AI KienPlus
+</button>
+
+<button class="navbtn" onclick="addSubject()">
+➕ Thêm môn học
+</button>
+
+<button class="navbtn" onclick="profile()">
+👤 Hồ sơ tài khoản
+</button>
+
+</aside>
+
+<main class="content">
+
+<div class="hero">
+
+<h1>
+Xin chào trai xinh gái đẹp, ${esc(user)} 👋
+</h1>
+
+<p>
+Đây là nơi đồng hành cùng bạn học tập!.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<div class="num">${subs.length}</div>
+<div class="muted">Môn học</div>
+</div>
+
+<div class="stat">
+<div class="num">${cs.length}</div>
+<div class="muted">Nội dung</div>
+</div>
+
+<div class="stat">
+<div class="num">${as.length}</div>
+<div class="muted">Bài tập</div>
+</div>
+
+<div class="stat">
+<div class="num">${ds.length}</div>
+<div class="muted">Tài liệu</div>
+</div>
+
+</div>
+
+<div class="section-head">
+
+<h2>📚 Môn học của tôi</h2>
+
+<button class="btn" onclick="addSubject()">
++ Thêm môn
+</button>
+
+</div>
+
+<div class="grid">
+
+${subs.map(s=>`
+
+<div class="card subject">
+
+<div class="emoji">📘</div>
+
+<h3>${esc(s.name)}</h3>
+
+<p>
+${esc(s.desc||'Chưa có mô tả.')}
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="openSubject(${s.id})">
+Mở môn học →
+</button>
+
+<button class="btn danger" onclick="deleteSubject(${s.id})">
+Xóa
+</button>
+
+</div>
+
+</div>
+
+`).join('')||
+
+'<div class="card empty">Chưa có môn học. Hãy tạo môn học đầu tiên.</div>'
+}
+
+</div>
+
+</main>
+</div>
+`;
+}
+
+function addSubject(){
+
+modal(`
+
+<h2>➕ Thêm môn học</h2>
+
+<div class="field">
+<label>Tên môn học</label>
+<input id="sn" placeholder="Ví dụ: C++">
+</div>
+
+<div class="field">
+<label>Mô tả</label>
+<textarea id="sd" placeholder="Mô tả môn học..."></textarea>
+</div>
+
+<div class="form-actions">
+
+<button class="btn secondary" onclick="closeModal()">
+Hủy
+</button>
+
+<button class="btn" onclick="createSubject()">
+Lưu
+</button>
+
+</div>
+
+`);
+}
+
+function createSubject(){
+
+let n=document.getElementById('sn').value.trim();
+
+if(!n)
+return alert('Nhập tên môn học.');
+
+db.subjects.push({
+id:uid(db.subjects),
+user:me,
+name:n,
+desc:document.getElementById('sd').value.trim()
+});
+
+save();
+closeModal();
+dashboard();
+}
+
+function deleteSubject(id){
+
+if(!confirm('Xóa môn học và toàn bộ dữ liệu bên trong?'))
+return;
+
+db.subjects=db.subjects.filter(s=>s.id!==id);
+
+db.contents=db.contents.filter(x=>x.subject!==id);
+
+db.assignments=db.assignments.filter(x=>x.subject!==id);
+
+db.docs=db.docs.filter(x=>x.subject!==id);
+
+save();
+
+dashboard();
+}
+
+function openSubject(id){
+
+currentSubject=id;
+currentTab='content';
+
+subjectView();
+}
+
+function subjectView(){
+
+let s=db.subjects.find(
+x=>x.id===currentSubject&&x.user===me
+);
+
+if(!s)
+return dashboard();
+
+let cs=db.contents.filter(x=>x.subject===s.id);
+
+let as=db.assignments.filter(x=>x.subject===s.id);
+
+let ds=db.docs.filter(x=>x.subject===s.id);
+
+let arr=
+currentTab==='content'?cs:
+currentTab==='assignment'?as:
+ds;
+
+let user=db.users.find(x=>x.id===me)?.u||'';
+
+document.getElementById('app').innerHTML=`
+
+<div class="top">
+
+<div class="brand">
+<div class="logo">📚</div>
+Kho Học Tập
+</div>
+
+<div class="userbar">
+<span>👤 ${esc(user)}</span>
+<button class="logout" onclick="logout()">Đăng xuất</button>
+</div>
+
+</div>
+
+<main class="content">
+
+<div class="section-head">
+
+<div>
+
+<h1 style="margin:0">
+📘 ${esc(s.name)}
+</h1>
+
+<p class="muted">
+${esc(s.desc||'')}
+</p>
+
+</div>
+
+<button class="btn secondary" onclick="dashboard()">
+← Quay lại
+</button>
+
+</div>
+
+<div class="tabs">
+
+<button class="tab ${currentTab==='content'?'active':''}"
+onclick="currentTab='content';subjectView()">
+📖 Nội dung
+</button>
+
+<button class="tab ${currentTab==='assignment'?'active':''}"
+onclick="currentTab='assignment';subjectView()">
+📝 Bài tập
+</button>
+
+<button class="tab ${currentTab==='doc'?'active':''}"
+onclick="currentTab='doc';subjectView()">
+📎 Tài liệu
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="section-head">
+
+<h2>
+${
+currentTab==='content'
+?'📖 Nội dung học tập'
+:
+currentTab==='assignment'
+?'📝 Bài tập'
+:
+'📎 Tài liệu'
+}
+</h2>
+
+<button class="btn"
+onclick="addItem('${currentTab}')">
++ Thêm
+</button>
+
+</div>
+
+${
+arr.map(x=>itemHtml(x,currentTab)).join('')
+||
+'<div class="empty">Chưa có dữ liệu ở mục này.</div>'
+}
+
+</div>
+
+</main>
+`;
+}
+
+function itemHtml(x,t){
+
+if(t==='content')
+
+return `
+
+<div class="item">
+
+<h3>
+${esc(x.title)}
+</h3>
+
+<p>
+${esc(x.body)}
+</p>
+
+<button class="btn danger"
+onclick="delItem('content',${x.id})">
+Xóa
+</button>
+
+</div>
+`;
+
+if(t==='assignment')
+
+return `
+
+<div class="item">
+
+<h3>
+${esc(x.title)}
+</h3>
+
+<p>
+${esc(x.body)}
+</p>
+
+<p>
+⏰ Hạn: ${esc(x.due||'Chưa đặt')}
+</p>
+
+<button class="btn danger"
+onclick="delItem('assignment',${x.id})">
+Xóa
+</button>
+
+</div>
+`;
+
+return `
+
+<div class="item">
+
+<h3>
+📎 ${esc(x.name)}
+</h3>
+
+<p>
+${esc(x.url||'')}
+</p>
+
+<div class="actions">
+
+<a class="btn"
+href="${esc(x.url||'#')}"
+target="_blank">
+Mở tài liệu
+</a>
+
+<button class="btn danger"
+onclick="delItem('doc',${x.id})">
+Xóa
+</button>
+
+</div>
+
+</div>
+`;
+}
+
+function addItem(t){
+
+if(t==='content')
+
+modal(`
+
+<h2>📖 Thêm nội dung</h2>
+
+<div class="field">
+<label>Tiêu đề</label>
+<input id="it" placeholder="Bài 1...">
+</div>
+
+<div class="field">
+<label>Nội dung</label>
+<textarea id="ib"></textarea>
+</div>
+
+<div class="form-actions">
+
+<button class="btn secondary"
+onclick="closeModal()">
+Hủy
+</button>
+
+<button class="btn"
+onclick="createItem('content')">
+Lưu
+</button>
+
+</div>
+`);
+
+else if(t==='assignment')
+
+modal(`
+
+<h2>📝 Thêm bài tập</h2>
+
+<div class="field">
+<label>Tên bài tập</label>
+<input id="it">
+</div>
+
+<div class="field">
+<label>Yêu cầu</label>
+<textarea id="ib"></textarea>
+</div>
+
+<div class="field">
+<label>Hạn nộp</label>
+<input id="idue" type="date">
+</div>
+
+<div class="form-actions">
+
+<button class="btn secondary"
+onclick="closeModal()">
+Hủy
+</button>
+
+<button class="btn"
+onclick="createItem('assignment')">
+Lưu
+</button>
+
+</div>
+`);
+
+else
+
+modal(`
+
+<h2>📎 Thêm tài liệu</h2>
+
+<div class="field">
+<label>Tên tài liệu</label>
+<input id="it">
+</div>
+
+<div class="field">
+<label>Link tài liệu</label>
+<input id="iu" placeholder="https://...">
+</div>
+
+<div class="form-actions">
+
+<button class="btn secondary"
+onclick="closeModal()">
+Hủy
+</button>
+
+<button class="btn"
+onclick="createItem('doc')">
+Lưu
+</button>
+
+</div>
+`);
+}
+
+function createItem(t){
+
+let title=document.getElementById('it').value.trim();
+
+if(!title)
+return alert('Nhập tiêu đề.');
+
+if(t==='content')
+
+db.contents.push({
+id:uid(db.contents),
+subject:currentSubject,
+title,
+body:document.getElementById('ib').value.trim()
+});
+
+else if(t==='assignment')
+
+db.assignments.push({
+id:uid(db.assignments),
+subject:currentSubject,
+title,
+body:document.getElementById('ib').value.trim(),
+due:document.getElementById('idue').value
+});
+
+else
+
+db.docs.push({
+id:uid(db.docs),
+subject:currentSubject,
+name:title,
+url:document.getElementById('iu').value.trim()
+});
+
+save();
+
+closeModal();
+
+subjectView();
+}
+
+function delItem(t,id){
+
+if(!confirm('Xóa mục này?'))
+return;
+
+let k=
+t==='content'
+?'contents'
+:
+t==='assignment'
+?'assignments'
+:
+'docs';
+
+db[k]=db[k].filter(x=>x.id!==id);
+
+save();
+
+subjectView();
+}
+
+function showAll(t){
+
+let subs=db.subjects.filter(s=>s.user===me);
+
+let key=
+t==='content'
+?'contents'
+:
+t==='assignment'
+?'assignments'
+:
+'docs';
+
+let arr=db[key].filter(
+x=>subs.some(s=>s.id===x.subject)
+);
+
+document.getElementById('app').innerHTML=`
+
+<div class="top">
+
+<div class="brand">
+<div class="logo">📚</div>
+Kho Học Tập
+</div>
+
+<div class="userbar">
+
+<button class="logout" onclick="logout()">
+Đăng xuất
+</button>
+
+</div>
+
+</div>
+
+<main class="content">
+
+<div class="section-head">
+
+<h1>
+${
+t==='content'
+?'📖 Tất cả nội dung'
+:
+t==='assignment'
+?'📝 Tất cả bài tập'
+:
+'📎 Tất cả tài liệu'
+}
+</h1>
+
+<button class="btn secondary"
+onclick="dashboard()">
+← Trang chủ
+</button>
+
+</div>
+
+<div class="card">
+
+${
+arr.map(x=>{
+
+let s=subs.find(q=>q.id===x.subject);
+
+return `
+
+<div class="item">
+
+<small class="muted">
+${esc(s?.name||'')}
+</small>
+
+${itemHtml(x,t)}
+
+</div>
+
+`;
+
+}).join('')
+
+||
+
+'<div class="empty">Chưa có dữ liệu.</div>'
+}
+
+</div>
+
+</main>
+`;
+}
+
+function modal(html){
+
+document.getElementById('dialog').innerHTML=html;
+
+document.getElementById('modal')
+.classList.add('open');
+}
+
+function closeModal(){
+
+document.getElementById('modal')
+.classList.remove('open');
+}
+
+function logout(){
+
+me=0;
+
+localStorage.removeItem('khht_me');
+
+render();
+}
+function profile(){
+
+let user=db.users.find(x=>x.id===me);
+
+if(!user) return logout();
+
+document.getElementById('app').innerHTML=`
+
+<div class="top">
+
+<div class="brand">
+<div class="logo">📚</div>
+Kho Học Tập
+</div>
+
+<div class="userbar">
+<span>👤 ${esc(user.u)}</span>
+<button class="logout" onclick="logout()">Đăng xuất</button>
+</div>
+
+</div>
+
+<main class="content">
+
+<div class="section-head">
+
+<div>
+<h1 style="margin:0">👤 Hồ sơ tài khoản</h1>
+<p class="muted">
+Quản lý thông tin cá nhân của bạn
+</p>
+</div>
+
+<button class="btn secondary" onclick="dashboard()">
+← Quay lại
+</button>
+
+</div>
+
+<div class="card">
+
+<div style="text-align:center;margin-bottom:25px">
+
+<div id="avatarPreview"
+style="
+width:120px;
+height:120px;
+border-radius:50%;
+margin:auto;
+overflow:hidden;
+border:4px solid var(--primary);
+background:var(--surface2);
+display:grid;
+place-items:center;
+font-size:50px;
+">
+
+${user.avatar
+? `<img src="${user.avatar}"
+style="width:100%;height:100%;object-fit:cover">`
+: '👤'}
+
+</div>
+
+<br>
+
+<label class="btn" style="display:inline-block">
+📷 Chọn ảnh đại diện
+<input
+type="file"
+id="avatarInput"
+accept="image/*"
+style="display:none"
+onchange="previewAvatar(event)">
+</label>
+
+</div>
+
+<div class="field">
+
+<label>👤 Tên tài khoản</label>
+
+<input
+id="profileUsername"
+value="${esc(user.u)}"
+placeholder="Tên tài khoản">
+
+</div>
+
+<div class="field">
+
+<label>📧 Email</label>
+
+<input
+id="profileEmail"
+type="email"
+value="${esc(user.email||'')}"
+placeholder="example@gmail.com">
+
+</div>
+
+<div class="field">
+
+<label>📱 Số điện thoại</label>
+
+<input
+id="profilePhone"
+type="tel"
+value="${esc(user.phone||'')}"
+placeholder="0912345678">
+
+</div>
+
+<div class="field">
+
+<label>🔑 Mật khẩu mới</label>
+
+<input
+id="profilePassword"
+type="password"
+placeholder="Để trống nếu không muốn đổi">
+
+</div>
+
+<div class="form-actions">
+
+<button class="btn secondary"
+onclick="dashboard()">
+Hủy
+</button>
+
+<button class="btn"
+onclick="saveProfile()">
+💾 Lưu thay đổi
+</button>
+
+</div>
+
+</div>
+
+</main>
+`;
+}
+
+
+function previewAvatar(event){
+
+let file=event.target.files[0];
+
+if(!file) return;
+
+if(!file.type.startsWith('image/')){
+alert('Vui lòng chọn file hình ảnh.');
+return;
+}
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+let preview=document.getElementById('avatarPreview');
+
+preview.innerHTML=`
+<img
+src="${e.target.result}"
+style="
+width:100%;
+height:100%;
+object-fit:cover;
+">
+`;
+
+};
+
+reader.readAsDataURL(file);
+}
+
+
+function saveProfile(){
+
+let user=db.users.find(x=>x.id===me);
+
+if(!user) return logout();
+
+let username=
+document.getElementById('profileUsername')
+.value.trim();
+
+let email=
+document.getElementById('profileEmail')
+.value.trim();
+
+let phone=
+document.getElementById('profilePhone')
+.value.trim();
+
+let password=
+document.getElementById('profilePassword')
+.value;
+
+
+if(!username){
+
+alert('Tên tài khoản không được để trống.');
+
+return;
+}
+
+
+// Kiểm tra tên tài khoản có bị trùng không
+
+let duplicate=db.users.some(x=>
+x.id!==me &&
+x.u.toLowerCase()===username.toLowerCase()
+);
+
+if(duplicate){
+
+alert('Tên tài khoản này đã được sử dụng.');
+
+return;
+}
+
+
+// Lưu thông tin
+
+user.u=username;
+
+user.email=email;
+
+user.phone=phone;
+
+
+// Nếu nhập mật khẩu mới thì đổi mật khẩu
+
+if(password){
+
+if(password.length<6){
+
+alert('Mật khẩu mới phải có ít nhất 6 ký tự.');
+
+return;}user.p=password;}
+
+// Lấy ảnh đại diện
+
+let file= document.getElementById('avatarInput')?.files[0];
+
+if(file){
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+user.avatar=e.target.result;
+
+save();
+
+alert('Đã cập nhật thông tin tài khoản!');
+
+profile();
+
+};
+
+reader.readAsDataURL(file);
+
+}else{
+
+save();
+
+alert('Đã cập nhật thông tin tài khoản!');
+
+profile();
+
+}
+
+}
+document.getElementById('modal')
+.addEventListener('click',e=>{
+
+if(e.target.id==='modal')
+closeModal();
+
+});
+
+render();
+
+// =====================================================
+// 🤖 AI HỌC TẬP
+// =====================================================
+
+let aiConversation = [];
+
+function aiPage(){
+
+    let user = db.users.find(x=>x.id===me);
+
+    if(!user){
+        return login();
+    }
+
+    document.getElementById('app').innerHTML = `
+
+    ${headerAI(user)}
+
+    <main class="content ai-page">
+
+        <div class="section-head">
+
+            <div>
+                <h1 style="margin:0">
+                    🤖 AI KienPlus
+                </h1>
+
+                <p class="muted">
+                    Trợ lý học tập cá nhân của bạn
+                </p>
+            </div>
+
+            <button class="btn secondary"
+                    onclick="dashboard()">
+
+                ← Quay lại
+
+            </button>
+
+        </div>
+
+
+        <div class="ai-box">
+
+            <div class="ai-header">
+
+                <div class="ai-avatar">
+                    🤖
+                </div>
+
+                <div>
+
+                    <h2>
+                        Trợ lý AI KienPlus
+                    </h2>
+
+                    <p>
+                        Phân tích • Tìm kiếm • Học tập
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="aiMessages"
+                class="ai-messages"
+            >
+
+                <div class="ai-message bot">
+
+                    Xin chào ${esc(user.u)} 👋
+
+                    Mình là AI KienPlus của bạn.
+
+                    Bạn muốn học gì hôm nay?
+
+                </div>
+
+            </div>
+
+
+            <div class="ai-tools">
+
+                <button
+                    class="ai-tool"
+                    onclick="aiQuick('Giải thích bài này cho tôi thật dễ hiểu.')">
+
+                    💡 Giải thích bài
+
+                </button>
+
+
+                <button
+                    class="ai-tool"
+                    onclick="aiQuick('Hãy phân tích bài tập này và hướng dẫn tôi từng bước.')">
+
+                    📝 Phân tích bài
+
+                </button>
+
+
+                <button
+                    class="ai-tool"
+                    onclick="searchMyLibrary()">
+
+                    📚 Tìm trong kho
+
+                </button>
+
+
+                <label class="ai-tool">
+
+                    🖼️ Phân tích ảnh
+
+                    <input
+                        type="file"
+                        accept="image/*"
+                        style="display:none"
+                        onchange="aiImage(this)"
+                    >
+
+                </label>
+
+
+                <button
+                    class="ai-tool"
+                    onclick="clearAI()">
+
+                    🗑️ Xóa chat
+
+                </button>
+
+            </div>
+
+
+            <div class="ai-input">
+
+                <textarea
+                    id="aiInput"
+                    placeholder="Nhập câu hỏi của bạn..."
+                    onkeydown="aiKeydown(event)"
+                ></textarea>
+
+                <button
+                    class="ai-send"
+                    onclick="sendAI()">
+
+                    ➤
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    `;
+}
+
+
+function headerAI(user){
+
+    let avatar = user.avatar
+
+        ? `
+        <img
+            src="${esc(user.avatar)}"
+            style="
+                width:36px;
+                height:36px;
+                border-radius:50%;
+                object-fit:cover;
+                border:2px solid var(--primary);
+            "
+        >
+        `
+
+        : `
+        <div
+            style="
+                width:36px;
+                height:36px;
+                border-radius:50%;
+                background:var(--surface2);
+                display:grid;
+                place-items:center;
+            "
+        >
+            👤
+        </div>
+        `;
+
+
+    return `
+
+    <div class="top">
+
+        <div class="brand">
+
+            <div class="logo">
+                📚
+            </div>
+
+            Kho Học Tập
+
+        </div>
+
+
+        <div class="userbar">
+
+            <button
+                onclick="profile()"
+                style="
+                    border:0;
+                    background:transparent;
+                    display:flex;
+                    align-items:center;
+                    gap:8px;
+                    color:var(--muted);
+                "
+            >
+
+                ${avatar}
+
+                ${esc(user.u)}
+
+            </button>
+
+
+            <button
+                class="logout"
+                onclick="logout()"
+            >
+
+                Đăng xuất
+
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+
+// ===============================
+// GỬI CÂU HỎI
+// ===============================
+
+async function sendAI(){
+
+    let input =
+        document.getElementById('aiInput');
+
+    if(!input) return;
+
+    let question =
+        input.value.trim();
+
+    if(!question) return;
+
+
+    addAIMessage(
+        question,
+        'user'
+    );
+
+    input.value='';
+
+
+    let loading =
+        addAIMessage(
+            '🤖 Đang suy nghĩ...',
+            'bot'
+        );
+
+
+    try{
+
+        let library =
+            getLibraryData();
+
+
+        let response =
+            await fetch('/api/ai',{
+                method:'POST',
+
+                headers:{
+                    'Content-Type':
+                    'application/json'
+                },
+
+                body:JSON.stringify({
+
+                    message:question,
+
+                    history:
+                    aiConversation,
+
+                    library:library
+
+                })
+
+            });
+
+
+        let data =
+            await response.json();
+
+
+        loading.remove();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                'Không thể kết nối AI.'
+            );
+
+        }
+
+
+        addAIMessage(
+            data.answer,
+            'bot'
+        );
+
+
+        aiConversation.push({
+
+            role:'user',
+            content:question
+
+        });
+
+
+        aiConversation.push({
+
+            role:'assistant',
+            content:data.answer
+
+        });
+
+
+    }catch(error){
+
+        loading.remove();
+
+
+        addAIMessage(
+
+            `⚠️ Không thể kết nối AI.
+
+${error.message}
+
+Nếu bạn đang mở file HTML bằng cách double-click, AI sẽ không hoạt động. Website cần chạy qua Python server.`,
+
+            'bot'
+
+        );
+
+    }
+
+}
+
+
+// ===============================
+// HIỂN THỊ TIN NHẮN
+// ===============================
+
+function addAIMessage(text,type){
+
+    let box =
+        document.getElementById(
+            'aiMessages'
+        );
+
+
+    if(!box) return null;
+
+
+    let message =
+        document.createElement('div');
+
+
+    message.className =
+        `ai-message ${type}`;
+
+
+    message.textContent =
+        text;
+
+
+    box.appendChild(message);
+
+
+    box.scrollTop =
+        box.scrollHeight;
+
+
+    return message;
+
+}
+
+
+// ===============================
+// ENTER ĐỂ GỬI
+// ===============================
+
+function aiKeydown(event){
+
+    if(
+        event.key === 'Enter' &&
+        !event.shiftKey
+    ){
+
+        event.preventDefault();
+
+        sendAI();
+
+    }
+
+}
+
+
+// ===============================
+// CÂU HỎI NHANH
+// ===============================
+
+function aiQuick(text){
+
+    let input =
+        document.getElementById(
+            'aiInput'
+        );
+
+    if(!input) return;
+
+    input.value=text;
+
+    input.focus();
+
+}
+
+
+// ===============================
+// XÓA LỊCH SỬ
+// ===============================
+
+function clearAI(){
+
+    aiConversation=[];
+
+
+    let box =
+        document.getElementById(
+            'aiMessages'
+        );
+
+
+    if(!box) return;
+
+
+    box.innerHTML = `
+
+        <div class="ai-message bot">
+
+            Đã xóa cuộc trò chuyện. 🗑️
+
+            Bạn có thể bắt đầu câu hỏi mới.
+
+        </div>
+
+    `;
+
+}
+
+
+// =====================================================
+// 📚 LẤY DỮ LIỆU TRONG KHO HỌC TẬP
+// =====================================================
+
+function getLibraryData(){
+
+    let subjects =
+        db.subjects.filter(
+            s=>s.user===me
+        );
+
+
+    let data=[];
+
+
+    db.contents
+        .filter(
+            x=>subjects.some(
+                s=>s.id===x.subject
+            )
+        )
+        .forEach(x=>{
+
+            let subject =
+                subjects.find(
+                    s=>s.id===x.subject
+                );
+
+
+            data.push({
+
+                type:'Nội dung',
+
+                subject:
+                    subject?.name || '',
+
+                title:x.title,
+
+                body:x.body
+
+            });
+
+        });
+
+
+    db.assignments
+        .filter(
+            x=>subjects.some(
+                s=>s.id===x.subject
+            )
+        )
+        .forEach(x=>{
+
+            let subject =
+                subjects.find(
+                    s=>s.id===x.subject
+                );
+
+
+            data.push({
+
+                type:'Bài tập',
+
+                subject:
+                    subject?.name || '',
+
+                title:x.title,
+
+                body:x.body,
+
+                due:x.due
+
+            });
+
+        });
+
+
+    db.docs
+        .filter(
+            x=>subjects.some(
+                s=>s.id===x.subject
+            )
+        )
+        .forEach(x=>{
+
+            let subject =
+                subjects.find(
+                    s=>s.id===x.subject
+                );
+
+
+            data.push({
+
+                type:'Tài liệu',
+
+                subject:
+                    subject?.name || '',
+
+                title:x.name,
+
+                body:x.url
+
+            });
+
+        });
+
+
+    return data;
+
+}
+
+
+// =====================================================
+// 📚 TÌM KIẾM TRONG KHO
+// =====================================================
+
+function searchMyLibrary(){
+
+    let keyword =
+        prompt(
+            'Nhập nội dung bạn muốn tìm trong kho:'
+        );
+
+
+    if(!keyword) return;
+
+
+    let data =
+        getLibraryData();
+
+
+    let key =
+        keyword.toLowerCase();
+
+
+    let results =
+        data.filter(x=>{
+
+            let text =
+                JSON.stringify(x)
+                .toLowerCase();
+
+
+            return text.includes(key);
+
+        });
+
+
+    if(results.length===0){
+
+        addAIMessage(
+
+            `🔎 Không tìm thấy "${keyword}" trong kho học tập.`,
+
+            'bot'
+
+        );
+
+        return;
+
+    }
+
+
+    let resultText =
+        `🔎 Tìm thấy ${results.length} kết quả:
+
+`;
+
+
+    results.forEach((x,i)=>{
+
+        resultText +=
+`
+${i+1}. ${x.type}
+Môn: ${x.subject}
+${x.title}
+${x.body}
+`;
+
+    });
+
+
+    addAIMessage(
+        resultText,
+        'bot'
+    );
+
+}
+
+
+// =====================================================
+// 🖼️ PHÂN TÍCH ẢNH
+// =====================================================
+
+async function aiImage(input){
+
+    let file =
+        input.files[0];
+
+    if(!file) return;
+
+
+    addAIMessage(
+
+        `🖼️ Đã chọn ảnh: ${file.name}`,
+
+        'user'
+
+    );
+
+
+    let loading =
+        addAIMessage(
+            '🤖 Đang phân tích ảnh...',
+            'bot'
+        );
+
+
+    let form =
+        new FormData();
+
+
+    form.append(
+        'image',
+        file
+    );
+
+
+    try{
+
+        let response =
+            await fetch(
+                '/api/ai-image',
+                {
+                    method:'POST',
+                    body:form
+                }
+            );
+
+
+        let data =
+            await response.json();
+
+
+        loading.remove();
+
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                'Không thể phân tích ảnh.'
+            );
+
+        }
+
+
+        addAIMessage(
+            data.answer,
+            'bot'
+        );
+
+
+    }catch(error){
+
+        loading.remove();
+
+
+        addAIMessage(
+
+            `⚠️ ${error.message}`,
+
+            'bot'
+
+        );
+
+    }
+
+
+    input.value='';
+
+}
+
+</script>
+
+</body>
+</html>
