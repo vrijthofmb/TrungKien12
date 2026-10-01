@@ -264,6 +264,31 @@ button{cursor:pointer}
 @media(max-width:480px){.userbar{gap:6px}.logout{padding:7px 9px}.streak-number{font-size:27px}.streak-fire{font-size:32px}.streak-levels{gap:5px}}
 @media(prefers-reduced-motion:no-preference){.search-result,.btn,.navbtn,.card,.stat,.tab{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,border-color .18s ease}.card:hover,.stat:hover{transform:translateY(-2px);box-shadow:0 8px 22px #0000000d}}
 
+
+/* =========================
+   🐇 GACHA - ĐI TÌM THỎ
+========================= */
+.gacha-launch{margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 16px;border-radius:15px;background:linear-gradient(135deg,#ecfdf5,#eff6ff);border:1px solid #bbf7d0;color:#0f172a}
+.gacha-launch b{display:block;margin-bottom:3px}.gacha-launch small{color:#64748b}.gacha-launch .btn{white-space:nowrap}
+.gacha-page{min-height:calc(100vh - 68px);padding:22px;position:relative;overflow:hidden;background:linear-gradient(180deg,#dff7ff 0%,#efffe5 38%,#9bd36b 100%)}
+.gacha-page:before,.gacha-page:after{content:'';position:absolute;pointer-events:none}.gacha-page:before{width:380px;height:180px;left:-80px;top:40px;background:radial-gradient(ellipse,#fff9 0 45%,transparent 70%);filter:blur(7px)}.gacha-page:after{inset:auto 0 0;height:180px;background:linear-gradient(180deg,transparent,#4d8f3a55)}
+.gacha-wrap{position:relative;z-index:1;max-width:1180px;margin:auto}
+.gacha-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:14px}.gacha-title h1{margin:0;color:#12351d;font-size:30px;text-shadow:0 2px #fff8}.gacha-title p{margin:5px 0 0;color:#36533c}.gacha-actions{display:flex;gap:8px;flex-wrap:wrap}
+.gacha-stage{position:relative;min-height:520px;border:4px solid #d7f2bd;border-radius:28px;overflow:hidden;background:linear-gradient(#9ddcff 0 32%,#dff5a7 32% 55%,#72b94f 55% 100%);box-shadow:0 20px 50px #24552d33,inset 0 0 0 2px #ffffff88}
+.gacha-sun{position:absolute;right:9%;top:7%;width:90px;height:90px;border-radius:50%;background:#fff4a8;box-shadow:0 0 50px #fff1a8}.gacha-cloud{position:absolute;width:150px;height:40px;border-radius:999px;background:#fff9;filter:blur(1px);animation:gachaCloud 14s linear infinite}.gacha-cloud.c1{top:16%;left:10%}.gacha-cloud.c2{top:25%;right:20%;transform:scale(.75);animation-duration:19s}
+.gacha-hill{position:absolute;left:-8%;right:-8%;bottom:28%;height:170px;border-radius:50% 50% 0 0/100% 100% 0 0;background:#78bc52}.gacha-field{position:absolute;inset:auto 0 0;height:48%;background:repeating-linear-gradient(82deg,#70b94b 0 7px,#67ae44 7px 12px);opacity:.95}
+.gacha-flower{position:absolute;font-size:20px;animation:gachaFloat 3s ease-in-out infinite}.f1{left:9%;bottom:15%}.f2{left:26%;bottom:20%;animation-delay:.7s}.f3{right:21%;bottom:17%;animation-delay:1.2s}.f4{right:8%;bottom:25%;animation-delay:1.8s}
+.gacha-rabbit-deco{position:absolute;font-size:58px;filter:drop-shadow(0 10px 5px #23400033);animation:rabbitHop 3.2s ease-in-out infinite}.rd1{left:15%;bottom:18%}.rd2{left:43%;bottom:27%;font-size:44px;animation-delay:.8s}.rd3{right:12%;bottom:17%;font-size:52px;animation-delay:1.5s}
+.gacha-console{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:min(650px,calc(100% - 28px));padding:16px;border-radius:22px;background:#0f172dcc;border:1px solid #ffffff35;backdrop-filter:blur(12px);text-align:center;color:#fff;box-shadow:0 16px 40px #0005}
+.gacha-orb{width:130px;height:130px;margin:-78px auto 10px;border-radius:50%;display:grid;place-items:center;font-size:54px;background:radial-gradient(circle at 35% 30%,#fff,#dbeafe 15%,#60a5fa 45%,#312e81 75%);box-shadow:0 0 0 8px #ffffff22,0 0 45px #60a5fa99;transition:.3s}.gacha-orb.rolling{animation:gachaSpin 1s linear infinite;filter:saturate(1.5)}
+.gacha-status{font-size:15px;font-weight:800;min-height:23px}.gacha-aura{height:9px;border-radius:99px;margin:9px auto 12px;max-width:420px;background:#64748b;box-shadow:0 0 18px #64748b88;transition:.35s}.gacha-aura.f{background:#94a3b8;box-shadow:0 0 18px #94a3b888}.gacha-aura.e{background:#84cc16;box-shadow:0 0 18px #84cc1688}.gacha-aura.d{background:#22c55e;box-shadow:0 0 18px #22c55e88}.gacha-aura.c{background:#06b6d4;box-shadow:0 0 18px #06b6d488}.gacha-aura.b{background:#3b82f6;box-shadow:0 0 18px #3b82f688}.gacha-aura.a{background:#8b5cf6;box-shadow:0 0 18px #8b5cf688}.gacha-aura.s{background:#ec4899;box-shadow:0 0 24px #ec4899cc}.gacha-aura.ss{background:#f97316;box-shadow:0 0 28px #f97316cc}.gacha-aura.sss{background:linear-gradient(90deg,#ef4444,#f59e0b,#22c55e,#06b6d4,#3b82f6,#8b5cf6,#ec4899);box-shadow:0 0 35px #fff9;animation:rainbowAura 1.2s linear infinite}
+.gacha-spin{min-width:180px;font-size:16px;padding:12px 22px;border-radius:14px;background:linear-gradient(135deg,#f59e0b,#ef4444);box-shadow:0 8px 22px #ef444455}.gacha-spin:disabled{opacity:.45;cursor:not-allowed}.gacha-tickets{display:inline-flex;gap:7px;align-items:center;margin-left:8px;padding:5px 10px;border-radius:999px;background:#fff2;color:#fff;font-size:13px}
+.gacha-result{position:absolute;inset:0;z-index:5;display:none;align-items:center;justify-content:center;background:#07130bcc;backdrop-filter:blur(7px);padding:20px}.gacha-result.show{display:flex;animation:gachaFade .35s ease}.rabbit-card{width:min(510px,100%);padding:30px 24px;text-align:center;border-radius:30px;background:linear-gradient(145deg,#ffffff,#eaf5e8);color:#172033;border:3px solid #fff;box-shadow:0 25px 80px #0007;position:relative;overflow:hidden}.rabbit-card.special{animation:specialReveal .7s cubic-bezier(.17,.89,.32,1.3)}.rabbit-card.rarity-sss{background:linear-gradient(145deg,#fff,#fff1f8);border-color:#fff;box-shadow:0 0 45px #fff,0 25px 80px #0007}.rabbit-aura-ring{width:205px;height:205px;margin:0 auto 10px;border-radius:50%;display:grid;place-items:center;background:var(--aura,radial-gradient(circle,#fff,#94a3b8));box-shadow:0 0 0 10px #ffffffaa,0 0 45px var(--glow,#94a3b8);position:relative}.rabbit-aura-ring:before{content:'';position:absolute;inset:12px;border-radius:50%;border:2px dashed #ffffffbb;animation:spinSlow 6s linear infinite}.rabbit-art{font-size:110px;filter:drop-shadow(0 14px 9px #0004);position:relative;z-index:1}.rabbit-card h2{margin:7px 0 5px;font-size:28px}.rarity-pill{display:inline-block;padding:5px 12px;border-radius:999px;color:#fff;font-weight:900;background:var(--rarity,#64748b);box-shadow:0 5px 15px #0002}.rabbit-rate{margin:10px 0;color:#475569;font-weight:700}.rabbit-scene{margin:14px 0;padding:12px;border-radius:15px;background:linear-gradient(135deg,#eff6ff,#faf5ff);border:1px solid #dbeafe;font-size:13px}.rabbit-human{font-size:32px;margin-top:6px}.result-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.gacha-storage{margin-top:16px;padding:18px;border-radius:22px;background:#ffffffdd;border:1px solid #fff;box-shadow:0 10px 30px #244b2722}.storage-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.storage-head h2{margin:0;color:#173c20}.rabbit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px}.rabbit-slot{min-height:150px;border-radius:16px;padding:12px;text-align:center;background:#f8fafc;border:1px solid #dbe4d4;position:relative;overflow:hidden}.rabbit-slot.owned{background:linear-gradient(145deg,#fff,#f1f7ea)}.rabbit-slot.locked{filter:grayscale(1);opacity:.7}.rabbit-slot .mini-art{font-size:48px}.rabbit-slot .mini-name{font-size:12px;font-weight:800;margin-top:5px}.rabbit-slot .mini-rarity{font-size:10px;font-weight:900}.rabbit-slot .copies{position:absolute;top:7px;right:7px;font-size:10px;padding:3px 6px;border-radius:999px;background:#0f172d;color:#fff}.gacha-note{font-size:12px;color:#64748b;margin-top:10px}.gacha-info{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.gacha-info-box{padding:12px;border-radius:14px;background:#f8fafc;border:1px solid #dbe4d4;text-align:center}.gacha-info-box b{display:block;font-size:18px;color:#173c20}.gacha-rate-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.gacha-rate-item{padding:9px;border-radius:12px;background:#fff;border:1px solid #e2e8f0;font-size:12px;font-weight:800}.gacha-rate-item span{float:right}
+@keyframes gachaSpin{to{transform:rotate(360deg)}}@keyframes gachaFade{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}@keyframes specialReveal{0%{transform:scale(.35) rotate(-5deg);opacity:0}65%{transform:scale(1.06) rotate(1deg);opacity:1}100%{transform:scale(1)}}@keyframes spinSlow{to{transform:rotate(360deg)}}@keyframes rainbowAura{to{filter:hue-rotate(360deg)}}@keyframes rabbitHop{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@keyframes gachaFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes gachaCloud{0%{transform:translateX(-20px)}50%{transform:translateX(40px)}100%{transform:translateX(-20px)}}
+.code-box{margin-top:12px;padding:12px;border-radius:14px;background:#f8fafc;border:1px solid #dbe4d4}.code-row{display:flex;gap:8px;margin-top:8px}.code-input{flex:1;padding:10px 12px;border:1px solid #dbe4d4;border-radius:10px;background:#fff;color:#172033;outline:none}
+@media(max-width:700px){.gacha-page{padding:12px}.gacha-stage{min-height:650px}.gacha-title h1{font-size:23px}.gacha-console{bottom:12px}.gacha-orb{width:105px;height:105px;font-size:43px;margin-top:-62px}.gacha-rabbit-deco{font-size:44px}.rabbit-grid{grid-template-columns:repeat(3,1fr)}.rabbit-card{padding:23px 16px}.rabbit-aura-ring{width:175px;height:175px}.rabbit-art{font-size:90px}.gacha-launch{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 
@@ -274,6 +299,13 @@ button{cursor:pointer}
 </div>
 
 <script>
+// Bảo vệ giao diện phía client: vô hiệu menu chuột phải và một số phím tắt
+// Đây chỉ là lớp cản cơ bản, không thể che tuyệt đối mã JavaScript khỏi DevTools.
+document.addEventListener('contextmenu',e=>e.preventDefault());
+document.addEventListener('keydown',e=>{
+ if((e.ctrlKey||e.metaKey)&&['u','s','p'].includes(e.key.toLowerCase()))e.preventDefault();
+ if(e.key==='F12')e.preventDefault();
+});
 const KEY='khht_demo_v1';
 
 const seed={
@@ -322,9 +354,23 @@ function updateStreak(){
  const user=db.users.find(x=>x.id===me); if(!user)return null;
  const today=dateKey(); const last=user.lastAccessDate||'';
  if(!user.streak) user.streak=0;
- if(last===today) return user.streak;
+ if(!user.gachaTickets) user.gachaTickets=0;
+ if(!Array.isArray(user.gachaClaimedLevels)) user.gachaClaimedLevels=[];
+ if(last===today){ syncGachaLevelRewards(user); return user.streak; }
  if(last && dayDiff(last,today)===1) user.streak+=1; else user.streak=1;
- user.lastAccessDate=today; save(); return user.streak;
+ user.lastAccessDate=today;
+ syncGachaLevelRewards(user);
+ save(); return user.streak;
+}
+function syncGachaLevelRewards(user){
+ if(!user.gachaTickets) user.gachaTickets=0;
+ if(!Array.isArray(user.gachaClaimedLevels)) user.gachaClaimedLevels=[];
+ STREAK_LEVELS.forEach(level=>{
+   if(user.streak>=level && !user.gachaClaimedLevels.includes(level)){
+     user.gachaTickets+=1;
+     user.gachaClaimedLevels.push(level);
+   }
+ });
 }
 function streakInfo(n){
  let idx=-1; STREAK_LEVELS.forEach((v,i)=>{if(n>=v)idx=i;});
@@ -334,12 +380,178 @@ function streakInfo(n){
 }
 function streakHtml(n){
  const info=streakInfo(n); const next=info.level>=500?500:info.next; const base=info.level||0; const pct=n>=500?100:Math.min(100,Math.max(4,((n-base)/Math.max(1,next-base))*100));
- return `<div class="streak-card"><div style="flex:1;width:100%"><div class="streak-main"><div class="streak-fire">🔥</div><div><div class="streak-title">Chuỗi học tập</div><div><span class="streak-number">${n}</span> <span class="muted">ngày liên tiếp</span></div></div></div><div class="streak-progress"><span style="width:${pct}%;background:${info.color}"></span></div><div class="streak-next">${n>=500?'🏆 Bạn đã đạt mốc cao nhất 500 ngày!':`Còn ${next-n} ngày để đạt mốc ${next} ngày.`}</div><div class="streak-levels">${STREAK_LEVELS.map((v,i)=>`<span class="streak-dot" style="${n>=v?'color:#fff;background:'+STREAK_COLORS[i]+';border-color:'+STREAK_COLORS[i]:''}">${v} ngày</span>`).join('')}</div></div><div class="streak-badge" style="background:${info.color}">${info.level?`🔥 Mốc ${info.level}`:'🌱 Bắt đầu'}</div></div>`;
+ const user=db.users.find(x=>x.id===me)||{};
+ const tickets=user.gachaTickets||0;
+ return `<div class="streak-card"><div style="flex:1;width:100%"><div class="streak-main"><div class="streak-fire">🔥</div><div><div class="streak-title">Chuỗi học tập</div><div><span class="streak-number">${n}</span> <span class="muted">ngày liên tiếp</span></div></div></div><div class="streak-progress"><span style="width:${pct}%;background:${info.color}"></span></div><div class="streak-next">${n>=500?'🏆 Bạn đã đạt mốc cao nhất 500 ngày!':`Còn ${next-n} ngày để đạt mốc ${next} ngày.`}</div><div class="streak-levels">${STREAK_LEVELS.map((v,i)=>`<span class="streak-dot" style="${n>=v?'color:#fff;background:'+STREAK_COLORS[i]+';border-color:'+STREAK_COLORS[i]:''}">${v} ngày</span>`).join('')}</div><div class="gacha-launch"><div><b>🐇 Đi tìm Thỏ</b><small>Mỗi mốc chuỗi mới nhận 1 lượt quay.</small></div><button class="btn" onclick="gachaPage()">🎟️ Bắt đầu ngay <span class="gacha-tickets">${tickets} lượt</span></button></div></div><div class="streak-badge" style="background:${info.color};cursor:pointer" onclick="gachaPage()">${info.level?`🔥 Mốc ${info.level}`:'🌱 Bắt đầu'}</div></div>`;
+}
+
+// =====================================================
+// 🐇 GACHA: ĐI TÌM THỎ
+// =====================================================
+
+// =====================================================
+// 🎁 DANH SÁCH GIFTCODE GACHA THỎ
+// =====================================================
+const PRIVATE_CODES = {
+  "KIENPLUS":    { reward: 5, type: "ticket" },
+  "KIENHOCTAP":  { reward: 5, type: "ticket" },
+  "YENDETHUONG": { reward: 5, type: "ticket" },
+  "JACK97":      { reward: 5, type: "ticket" },
+
+  "THO2026":     { reward: 2, type: "ticket" },
+  "GACHA2":      { reward: 2, type: "ticket" },
+  "KHOHOC2":     { reward: 2, type: "ticket" },
+  "RABBIT2":     { reward: 2, type: "ticket" },
+  "KIENTHO2":    { reward: 2, type: "ticket" },
+  "THOHOCTAP2":  { reward: 2, type: "ticket" }
+};
+
+
+const RARITY_META={
+ F:{label:'F',color:'#64748b',rate:'1:2',chance:71.9994},
+ E:{label:'E',color:'#84cc16',rate:'1:4',chance:18},
+ D:{label:'D',color:'#22c55e',rate:'1:8',chance:6},
+ C:{label:'C',color:'#06b6d4',rate:'1:20',chance:2.7},
+ B:{label:'B',color:'#3b82f6',rate:'1:50',chance:1},
+ A:{label:'A',color:'#8b5cf6',rate:'1:200',chance:.2996},
+ S:{label:'S',color:'#ec4899',rate:'1:100000',chance:.0007},
+ SS:{label:'SS',color:'#f97316',rate:'1:250000',chance:.0002},
+ SSS:{label:'SSS',color:'#ef4444',rate:'1:1000000',chance:.0001}
+};
+const RABBIT_NAMES=[
+ ['Thỏ Mây Non','F','Gió'],['Thỏ Cỏ Ngọt','F','Mộc'],['Thỏ Bánh Mật','F','Ánh sáng'],['Thỏ Bông Tuyết','F','Băng'],['Thỏ Hạt Dẻ','F','Đất'],['Thỏ Hoa Cúc','F','Mộc'],['Thỏ Sao Nhỏ','F','Tinh tú'],['Thỏ Sương Sớm','F','Nước'],['Thỏ Lá Xanh','F','Mộc'],['Thỏ Chuông Gió','F','Gió'],['Thỏ Kẹo Dâu','F','Mộc'],['Thỏ Đồng Cỏ','F','Đất'],
+ ['Thỏ Lam Ngọc','E','Nước'],['Thỏ Hồng Đào','E','Lửa'],['Thỏ Mộc Linh','E','Mộc'],['Thỏ Sét Nhỏ','E','Lôi'],['Thỏ Băng Lam','E','Băng'],['Thỏ Cát Vàng','E','Đất'],['Thỏ Đom Đóm','E','Ánh sáng'],['Thỏ Mặt Trăng','E','Nguyệt'],['Thỏ Mưa Rào','E','Nước'],['Thỏ Gió Đồng','E','Gió'],
+ ['Thỏ Hỏa Tinh','D','Lửa'],['Thỏ Băng Tâm','D','Băng'],['Thỏ Lôi Vũ','D','Lôi'],['Thỏ Ngân Hà','D','Tinh tú'],['Thỏ Địa Mạch','D','Đất'],['Thỏ Hải Lam','D','Nước'],['Thỏ Nhật Quang','D','Ánh sáng'],['Thỏ U Linh','D','Bóng tối'],['Thỏ Phong Ảnh','D','Gió'],
+ ['Thỏ Hỏa Hồ','C','Lửa'],['Thỏ Tuyết Nguyệt','C','Băng'],['Thỏ Thiên Lôi','C','Lôi'],['Thỏ Rừng Cổ Thụ','C','Mộc'],['Thỏ Sa Mạc Vương','C','Đất'],['Thỏ Hải Thần Non','C','Nước'],['Thỏ Nhật Thực','C','Bóng tối'],['Thỏ Thiên Vũ','C','Gió'],
+ ['Thỏ Long Viêm','B','Lửa'],['Thỏ Băng Long','B','Băng'],['Thỏ Lôi Long','B','Lôi'],['Thỏ Hải Nguyệt','B','Nước'],['Thỏ Thánh Mộc','B','Mộc'],['Thỏ Tinh Vân','B','Tinh tú'],['Thỏ Hắc Dạ','B','Bóng tối'],['Thỏ Quang Vũ','B','Ánh sáng'],
+ ['Thỏ Phượng Hoàng','A','Lửa'],['Thỏ Băng Hồ Ly','A','Băng'],['Thỏ Thiên Sứ','A','Ánh sáng'],['Thỏ Ma Vương','A','Bóng tối'],['Thỏ Thần Rừng','A','Mộc'],['Thỏ Hải Long','A','Nước'],['Thỏ Lôi Thần','A','Lôi'],
+ ['Thỏ Hỏa Nguyệt','S','Lửa'],['Thỏ Nữ Thần Băng','S','Băng'],['Thỏ Valkyrie','S','Ánh sáng'],['Thỏ Ma Nữ Hắc Nguyệt','S','Bóng tối'],['Thỏ Long Nữ Thiên Lôi','S','Lôi'],
+ ['Thỏ Thiên Đế','SS','Ánh sáng'],['Thỏ Hắc Long Vương','SS','Bóng tối'],['Thỏ Nữ Hoàng Tinh Tú','SS','Tinh tú'],['Thỏ Hải Thần','SS','Nước'],
+ ['Thỏ Sáng Thế','SSS','Thần tính'],['Thỏ Hư Không','SSS','Hư không'],['Thỏ Luân Hồi','SSS','Luân hồi'],['Thỏ Cầu Vồng Thần','SSS','Cầu vồng']
+];
+const RABBITS=RABBIT_NAMES.map((x,i)=>({id:`rabbit_${String(i+1).padStart(3,'0')}`,name:x[0],rarity:x[1],element:x[2],index:i+1}));
+const RABBIT_IMAGES=Object.fromEntries(RABBITS.map(r=>[r.id,`rabbit_${String(r.index).padStart(3,'0')}.png`]));
+function rabbitIcon(r){const icons={F:'🐇',E:'🐰',D:'🐇',C:'🐰',B:'🐇',A:'🐰',S:'👑🐇',SS:'🌙🐰',SSS:'🌈🐇'};return icons[r.rarity]||'🐇';}
+function rabbitStyle(r){const c=RARITY_META[r.rarity].color;const bg=r.rarity==='SSS'?'linear-gradient(135deg,#ef4444,#f59e0b,#22c55e,#3b82f6,#a855f7)':`radial-gradient(circle at 35% 25%,#fff,${c} 42%,#172033 90%)`;return `--aura:${bg};--glow:${c}`;}
+function ensureGacha(user){
+ if(!user.gachaTickets)user.gachaTickets=0;
+ if(!Array.isArray(user.gachaClaimedLevels))user.gachaClaimedLevels=[];
+ if(!Array.isArray(user.usedGiftCodes))user.usedGiftCodes=[];
+ if(!user.rabbitCollection)user.rabbitCollection={};
+ if(!user.lastGachaResult)user.lastGachaResult=null;
+ if(!db.gachaGlobal)db.gachaGlobal={sssRemaining:940};
+ syncGachaLevelRewards(user); save();
+}
+function weightedRarity(){
+ const pool=Object.entries(RARITY_META); const roll=Math.random()*100; let sum=0;
+ for(const [r,m] of pool){sum+=m.chance;if(roll<sum)return r;}return 'F';
+}
+function chooseRabbit(){
+ let rarity=weightedRarity();
+ if(rarity==='SSS' && db.gachaGlobal && db.gachaGlobal.sssRemaining<=0)rarity='SS';
+ const pool=RABBITS.filter(x=>x.rarity===rarity); return pool[Math.floor(Math.random()*pool.length)]||RABBITS[0];
+}
+function rarityClass(r){return String(r||'F').toLowerCase();}
+function gachaPage(){
+ const user=db.users.find(x=>x.id===me);if(!user)return login();ensureGacha(user);
+ document.getElementById('app').innerHTML=`
+ <div class="gacha-page"><div class="gacha-wrap">
+  <div class="gacha-top"><div class="gacha-title"><h1>🐇 Đi tìm Thỏ</h1><p>Cánh đồng bí mật đang chờ bạn khám phá.</p></div><div class="gacha-actions"><button class="btn secondary" onclick="dashboard()">← Về học tập</button><button class="btn secondary" onclick="gachaCollection()">📚 Kho Thỏ</button></div></div>
+  <div class="gacha-stage">
+   <div class="gacha-sun"></div><div class="gacha-cloud c1"></div><div class="gacha-cloud c2"></div><div class="gacha-hill"></div><div class="gacha-field"></div>
+   <div class="gacha-flower f1">🌼</div><div class="gacha-flower f2">🌸</div><div class="gacha-flower f3">🌻</div><div class="gacha-flower f4">🌷</div>
+   <div class="gacha-rabbit-deco rd1">🐇</div><div class="gacha-rabbit-deco rd2">🐰</div><div class="gacha-rabbit-deco rd3">🐇</div>
+   <div class="gacha-console"><div id="gachaOrb" class="gacha-orb">🐾</div><div id="gachaStatus" class="gacha-status">Một chú thỏ đang ẩn mình trong cánh đồng...</div><div id="gachaAura" class="gacha-aura"></div><button id="gachaSpinBtn" class="btn gacha-spin" onclick="spinGacha()" ${user.gachaTickets<=0?'disabled':''}>🎲 QUAY TÌM THỎ</button><span class="gacha-tickets">🎟️ ${user.gachaTickets} lượt</span></div>
+   <div id="gachaResult" class="gacha-result"></div>
+  </div>
+  <div class="gacha-storage"><div class="storage-head"><div><h2>🐇 Kho Thỏ</h2><div class="gacha-note">Đã thu thập <b>${Object.keys(user.rabbitCollection||{}).length}</b>/67 chú thỏ.</div></div><button class="btn secondary" onclick="gachaCollection()">Xem toàn bộ</button></div><div class="rabbit-grid">${RABBITS.slice(0,12).map(rabbitSlotHtml).join('')}</div></div>
+ </div></div>`;
+}
+function rabbitSlotHtml(r){
+ const user=db.users.find(x=>x.id===me)||{};
+ const copies=(user.rabbitCollection||{})[r.id]||0;
+ const owned=copies>0;
+ const meta=RARITY_META[r.rarity];
+ const img=RABBIT_IMAGES[r.id];
+ const art=owned
+   ? `<img src="${img}" alt="${esc(r.name)}" style="width:72px;height:72px;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'"><span class="rabbit-fallback" style="display:none;font-size:52px">${rabbitIcon(r)}</span>`
+   : `<span class="locked-rabbit">?</span>`;
+ return `<div class="rabbit-slot ${owned?'owned':'locked'}"><div class="mini-art">${art}</div><div class="mini-name">${owned?esc(r.name):'Chưa khám phá'}</div><div class="mini-rarity" style="color:${meta.color}">Hạng ${r.rarity}</div>${copies>1?`<span class="copies">×${copies}</span>`:''}</div>`;
+}
+function gachaCollection(){
+ const user=db.users.find(x=>x.id===me);if(!user)return;ensureGacha(user);
+ const owned=Object.keys(user.rabbitCollection||{}).length;const totalCopies=Object.values(user.rabbitCollection||{}).reduce((a,b)=>a+b,0);const sssLeft=db.gachaGlobal?.sssRemaining??940;
+ document.getElementById('app').innerHTML=`<div class="gacha-page"><div class="gacha-wrap"><div class="gacha-top"><div class="gacha-title"><h1>📚 Kho Thỏ</h1><p>${owned}/67 loài đã khám phá.</p></div><div class="gacha-actions"><button class="btn" onclick="gachaPage()">🐇 Đi tìm tiếp</button><button class="btn secondary" onclick="dashboard()">← Về học tập</button></div></div><div class="gacha-storage"><div class="gacha-info"><div class="gacha-info-box">🎟️<b>${user.gachaTickets||0}</b>Lượt quay</div><div class="gacha-info-box">🐇<b>${owned}/67</b>Đã sưu tầm</div><div class="gacha-info-box">🌈<b>${sssLeft}</b>SSS còn lại</div></div><div class="gacha-note">Tổng số lần tìm thấy: <b>${totalCopies}</b>. Mỗi mốc chuỗi học tập mới nhận 1 lượt quay.</div><div class="gacha-rate-list">${Object.entries(RARITY_META).map(([r,m])=>`<div class="gacha-rate-item" style="border-left:4px solid ${m.color}">${r}<span>${m.rate}</span></div>`).join('')}</div><div class="rabbit-grid" style="margin-top:14px">${RABBITS.map(rabbitSlotHtml).join('')}</div><div class="gacha-note">A trở lên có cảnh reveal riêng; S, SS và SSS có hiệu ứng đặc biệt. SSS giới hạn 940 bản trong phiên bản demo.</div></div></div></div>`;
+}
+function spinGacha(){
+ const user=db.users.find(x=>x.id===me);if(!user)return;ensureGacha(user);if(user.gachaTickets<=0)return alert('Bạn chưa có lượt quay. Hãy tiếp tục duy trì chuỗi học tập để mở mốc mới!');
+ user.gachaTickets--;save();
+ const btn=document.getElementById('gachaSpinBtn'),orb=document.getElementById('gachaOrb'),status=document.getElementById('gachaStatus'),aura=document.getElementById('gachaAura');
+ if(btn)btn.disabled=true;if(orb)orb.classList.add('rolling');
+ const stages=['f','e','d','c','b','a','s','ss','sss'];let i=0;
+ const timer=setInterval(()=>{const rr=stages[Math.min(i,stages.length-1)];if(aura)aura.className='gacha-aura '+rr;if(status)status.textContent=i<7?'Một luồng aura đang mạnh dần lên...':'Có thứ gì đó cực kỳ hiếm đang ẩn trong ánh sáng...';i++;if(i>=stages.length){clearInterval(timer);setTimeout(()=>finishGacha(user,btn,orb,status,aura),420)}},190);
+}
+function finishGacha(user,btn,orb,status,aura){
+ const rabbit=chooseRabbit();const rarity=rabbit.rarity;const meta=RARITY_META[rarity];const id=rabbit.id;const old=(user.rabbitCollection||{})[id]||0;user.rabbitCollection[id]=old+1;
+ if(rarity==='SSS' && old===0 && db.gachaGlobal.sssRemaining>0)db.gachaGlobal.sssRemaining--;
+ user.lastGachaResult={id,at:Date.now()};save();
+ if(orb){orb.classList.remove('rolling');orb.innerHTML=`<img src="${RABBIT_IMAGES[id]}" alt="${esc(rabbit.name)}" style="width:82px;height:82px;object-fit:contain" onerror="this.outerHTML='${rabbitIcon(rabbit)}'">`}if(status)status.textContent=`Đã tìm thấy ${rabbit.name}!`;if(aura)aura.className='gacha-aura '+rarityClass(rarity);
+ const duplicate=old>0;const special=['A','S','SS','SSS'].includes(rarity);const human=rarity==='S'||rarity==='SS'||rarity==='SSS';const result=document.getElementById('gachaResult');
+ result.innerHTML=`<div class="rabbit-card ${special?'special':''} rarity-${rarityClass(rarity)}"><div class="rabbit-aura-ring" style="${rabbitStyle(rabbit)}"><div class="rabbit-art"><img src="${RABBIT_IMAGES[id]}" alt="${esc(rabbit.name)}" style="width:120px;height:120px;object-fit:contain" onerror="this.outerHTML='${rabbitIcon(rabbit)}'"></div></div><div class="rarity-pill" style="--rarity:${meta.color}">${rarity}${rarity==='SSS'?' • HUYỀN THOẠI':''}</div><h2>${esc(rabbit.name)}</h2><div class="rabbit-rate">🎯 Tỉ lệ: ${meta.rate} • Hệ: ${esc(rabbit.element)}</div>${human?`<div class="rabbit-human">👤 ✦ 🐇 <b>Hai hình thái Người + Thỏ</b></div>`:''}${special?`<div class="rabbit-scene">✨ <b>Cảnh reveal đặc biệt</b><br>${duplicate?'Bạn đã gặp lại chú thỏ này — cảnh đặc biệt vẫn được giữ nguyên.':'Màn reveal riêng của chú thỏ đã được mở khóa!'}</div>`:''}<div style="font-weight:800;color:#f59e0b;font-size:19px">🎉 CHÚC MỪNG BẠN!</div><div class="result-actions"><button class="btn" onclick="closeGachaResult()">🐇 Quay tiếp</button><button class="btn secondary" onclick="shareRabbit('${id}')">📸 Khoe với bạn bè</button><button class="btn secondary" onclick="gachaCollection()">📚 Xem kho</button></div></div>`;
+ result.classList.add('show');
+}
+function closeGachaResult(){const r=document.getElementById('gachaResult');if(r)r.classList.remove('show');const user=db.users.find(x=>x.id===me);const btn=document.getElementById('gachaSpinBtn');if(btn){btn.disabled=(user?.gachaTickets||0)<=0;btn.nextElementSibling.textContent=`🎟️ ${user?.gachaTickets||0} lượt`}}
+function shareRabbit(id){
+ const r=RABBITS.find(x=>x.id===id);const user=db.users.find(x=>x.id===me);if(!r||!user)return;const meta=RARITY_META[r.rarity];const text=`🐇 ${user.u} vừa tìm thấy ${r.name} [${r.rarity}] trong Kho Học Tập! Tỉ lệ ${meta.rate}.`;
+ if(navigator.share){navigator.share({title:'Đi tìm Thỏ',text}).catch(()=>{})}else{navigator.clipboard?.writeText(text);alert('Đã sao chép nội dung khoe để bạn gửi cho bạn bè!');}
 }
 
 // =====================================================
 // 🔎 TÌM KIẾM TOÀN KHO
 // =====================================================
+function openCodeBox(){
+ const user=db.users.find(x=>x.id===me);if(!user)return;
+ modal(`<h2>🔐 Nhập mã</h2><p class="muted">Nhập mã được cấp riêng cho bạn. Mã không hiển thị công khai.</p><div class="code-box"><div class="code-row"><input id="privateCodeInput" class="code-input" type="password" autocomplete="off" placeholder="Nhập mã..."><button class="btn" onclick="submitPrivateCode()">Xác nhận</button></div></div><div class="form-actions"><button class="btn secondary" onclick="closeModal()">Đóng</button></div>`);
+}
+function submitPrivateCode(){
+ const input=document.getElementById('privateCodeInput');
+ const raw=input?.value.trim();
+
+ if(!raw)
+   return alert('Vui lòng nhập mã.');
+
+ const code=raw.toUpperCase();
+ const user=db.users.find(x=>x.id===me);
+
+ if(!user)
+   return alert('Bạn chưa đăng nhập.');
+
+ ensureGacha(user);
+
+ if(!Array.isArray(user.usedGiftCodes))
+   user.usedGiftCodes=[];
+
+ if(user.usedGiftCodes.includes(code))
+   return alert('❌ Mã này đã được sử dụng.');
+
+ const gift=PRIVATE_CODES[code];
+
+ if(!gift)
+   return alert('❌ Mã không hợp lệ.');
+
+ if(gift.type==='ticket'){
+   user.gachaTickets=(user.gachaTickets||0)+gift.reward;
+ }
+
+ user.usedGiftCodes.push(code);
+
+ save();
+
+ input.value='';
+ closeModal();
+
+ alert(`🎉 Mã ${code} hợp lệ!\nBạn nhận được ${gift.reward} lượt quay Thỏ.`);
+}
 function searchAll(raw){
  const q=String(raw||'').trim().toLowerCase(); const box=document.getElementById('searchResults'); if(!box)return;
  if(!q){box.innerHTML='';return;}
@@ -580,6 +792,9 @@ font-size:18px;
 
 <button class="navbtn" onclick="supportPage()">
 🛟 Liên hệ hỗ trợ
+</button>
+<button class="navbtn" onclick="openCodeBox()">
+ 🔐 Nhập mã
 </button>
 
 </aside>
@@ -2005,6 +2220,7 @@ function clearAI(){
     `;
 
 }
+
 
 // =====================================================
 // 📚 LẤY DỮ LIỆU TRONG KHO HỌC TẬP
